@@ -14,7 +14,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::prefix('ticket')->group(function() {
-    Route::get('/', 'HomeController@index');
+    //Route::get('/', 'TicketController@show_anasayfa');
 });
 
 //------------------------------------------------------------------------------------
@@ -22,11 +22,11 @@ Route::prefix('ticket')->group(function() {
 // 1- Yeni Destek Talebi Oluşturma Sayfası
 // 2- Taleplerim(Mesaj Gönderme Kısmı)-mysupports
 Route::prefix('ticket/user')->middleware(['auth','isNotAdmin'])->group(function() {
-    Route::get('/', 'TicketController@show_anasayfa');
+    Route::get('/', 'TicketController@getTicketsById');
     Route::get('/tickets','TicketController@getTicketsById');
     Route::get('/create_support', 'TicketController@create_support');
     Route::post('/save_support', 'TicketController@save_support');
-    Route::get('/mesajlarforuser','MesajController@getAllMesaj');
+    Route::get('/mesajlarforuser','MesajController@getAllMesajForUser');
     Route::post('/message',[MesajController::class, 'sendMessage']);
     
 });
@@ -36,8 +36,10 @@ Route::prefix('ticket/user')->middleware(['auth','isNotAdmin'])->group(function(
 // 1- Tüm Ticketlar-indexhtml
 // 2- Taleplerim(Mesaj Gönderme Kısmı)-mysupports
 Route::prefix('ticket/admin')->middleware(['auth','isAdmin'])->group(function() {
+    Route::get('/','TicketController@getAllTickets');
     Route::get('/tickets','TicketController@getAllTickets');
     Route::get('/mesajlarforadmin','MesajController@getAllMesaj');
+    Route::get('/mesajlarforadmin/{messageId}/{senderId}','MesajController@getMesajBySenderId');
     Route::post('/sendMessageFromAdmin/{id}',[MesajController::class, 'sendMessageFromAdmin']);
 
     

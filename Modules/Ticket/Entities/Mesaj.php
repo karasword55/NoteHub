@@ -24,13 +24,13 @@ class Mesaj extends Model
 
 
     public static function getAllMesaj(){
-        return $mesajlar=DB::select('SELECT * FROM messajlar WHERE (sender_id=?) ORDER BY created_at',[2]);
+        return $mesajlar=DB::select('SELECT * FROM messajlar WHERE (receiver_id=?) ORDER BY created_at',['2']);
         
     }
 
     public static function getAllMesajForUser(Request $req){
         
-        return $mesajlar=DB::select('SELECT * FROM messajlar WHERE (sender_id=?) ORDER BY created_at',[$req->user()->id]);
+        return $mesajlar=DB::select('SELECT * FROM messajlar WHERE (sender_id=?) OR (receiver_id=?) ORDER BY created_at',[$req->user()->id,$req->user()->id]);
         
     }
 
@@ -59,7 +59,7 @@ class Mesaj extends Model
         $text=$req->input('text');
         $time=now();
 
-        DB::select('insert into messajlar (sender_id,text,created_at,receiver_id=?) values(?,?,?,?)',[$sender_id,$text,$time,2]);
+        DB::select('insert into messajlar (sender_id,text,created_at,receiver_id) values(?,?,?,?)',[$sender_id,$text,$time,2]);
     }
 
     public static function sendMessageFromAdmin(Request $req,$id){
@@ -83,9 +83,9 @@ class Mesaj extends Model
         }*/
         //print_r($req);
         $messageId= Session::get('id');
-        $string1= DB::table('messajlar')->where('id', $id)->value('sender_id');
+        $string1= DB::table('messajlar')->where('id', $messageId)->value('sender_id');
         $sender_id= $req->user()->id;
-        $text=$req->input('content');
+        $text=$req->input('text');
         $time=now();
 
         DB::select('insert into messajlar (sender_id,receiver_id,text,created_at,cevapfor) values(?,?,?,?,?)',[$sender_id,$string1,$text,$time,$messageId]);

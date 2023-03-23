@@ -102,7 +102,10 @@ class TicketController extends Controller
 
     public function save_support(Request $req){
         $this->ticket->save_support($req);
-        return view('ticket::anasayfa');
+        //return view('ticket::anasayfa');
+        return redirect('http://127.0.0.1:8000/ticket/user');
+
+
     }
 
 
@@ -110,7 +113,7 @@ class TicketController extends Controller
     public function getAllTickets(){
        $tickets= $this->ticket->getAllTickets();
        //error_log($tickets->brief);
-       return view('ticket::anasayfa')->with('tickets',$tickets);
+       return view('ticket::anasayfaforadmin')->with('tickets',$tickets);
     }
 
     public function getTicketsById(Request $req){

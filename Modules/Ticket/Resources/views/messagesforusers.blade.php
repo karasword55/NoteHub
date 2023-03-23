@@ -81,32 +81,34 @@
 											<div class="content-inner">
 												
 												
-												
+												@foreach($mesajlar as $mesajlar)
 												<div class="media">
 													<div class="main-img-user online"><img alt="avatar" src="../assets/img/users/1.jpg"></div>
 													<div class="media-body">
 														<div class="main-msg-wrapper">
-															Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-															Aenean
-															commodo ligula eget dolor.
+															{{$mesajlar->text}}
 														</div>
 														<div>
-															<span>9:32 am</span> <a href="javascript:void(0);"><i class="icon ion-android-more-horizontal"></i></a>
+															<span>{{$mesajlar->created_at}}</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
 														</div>
 													</div>
 												</div>
-												
+												@endforeach
 												
 												
 											</div>
 										<div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 608px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 351px;"></div></div></div>
+										<form action="http://127.0.0.1:8000/ticket/user/message" method="post">
+											{{ csrf_field() }}
 										<div class="main-chat-footer rounded-top-0">
 											<nav class="nav">
 												<a class="nav-link" data-bs-toggle="tooltip" href="javascript:void(0);" aria-label="Add Photo" data-bs-original-title="Add Photo"><i class="fe fe-image"></i></a>
 												<a class="nav-link" data-bs-toggle="tooltip" href="javascript:void(0);" aria-label="Attach a File" data-bs-original-title="Attach a File"><i class="fe fe-paperclip"></i></a>
 											 </nav>
-											<input class="form-control" placeholder="Type your message here..." type="text">
-											<a class="main-msg-send" href="javascript:void(0);"><i class="fa fa-paper-plane"></i></a>
+											<input name="text" id="text"class="form-control" placeholder="Type your message here..." type="text">
+											<button type="submit" class="main-msg-send"><i class="fa fa-paper-plane"></i></button>
+										</div>
+										</form>
 										</div>
 									</div>
 								</div>

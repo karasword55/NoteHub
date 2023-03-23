@@ -34,6 +34,6 @@ class AdminAccess
         }
 
         
-        return $next($request);
+        abort(403);
     }
 }

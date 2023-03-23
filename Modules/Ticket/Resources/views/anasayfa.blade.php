@@ -15,7 +15,7 @@
 		content="sales dashboard, admin dashboard, bootstrap 5 admin template, html admin template, admin panel design, admin panel design, bootstrap 5 dashboard, admin panel template, html dashboard template, bootstrap admin panel, sales dashboard design, best sales dashboards, sales performance dashboard, html5 template, dashboard template">
 
 		<!-- Favicon -->
-		<link rel="icon" href="../assets/img/brand/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="{{ url('../assets/img/brand/favicon.ico')}}gffdgfdg" type="image/x-icon">
 
 		<!-- Title -->
 		<title>Dashlead - Admin Panel HTML Dashboard Template</title>
@@ -62,7 +62,7 @@
 					</div>
 					<div class="btn-list"> 
 						<a class="btn ripple btn-secondary"  href="http://127.0.0.1:8000/ticket/user/create_support"><i class="fa fa-plus"></i> Yeni Destek Talebi</a>
-						<a class="btn ripple btn-info" href="http://127.0.0.1:8000/ticket/user" ><i class="fe fe-help-circle"></i> Taleplerim</a>
+						<a class="btn ripple btn-info" href="http://127.0.0.1:8000/ticket/user/mesajlarforuser" ><i class="fe fe-help-circle"></i> Taleplerim</a>
 						<a class="btn ripple btn-danger "  href="index.html" ><i class="fe fe-power"></i> SSS</a>
 						 
 					</div>

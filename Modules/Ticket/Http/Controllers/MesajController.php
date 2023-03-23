@@ -94,6 +94,7 @@ class MesajController extends Controller
         $mesajlar= $this->mesaj->getAllMesaj();
         foreach($mesajlar as $value){
             error_log($value->text);
+            
         }
         return view('ticket::messagesforadmin')->with('mesajlar',$mesajlar);
     }
@@ -117,7 +118,8 @@ class MesajController extends Controller
 
     public function sendMessage(Request $req){
         $this->mesaj->sendMessage($req);
-        return view('ticket::taleplerim');
+        return redirect()->back();
+        //return view('ticket::anasayfa');
     }
 
     public function getMesajByReceiverId(Request $req){
@@ -128,6 +130,8 @@ class MesajController extends Controller
         $this->mesaj->sendMessageFromAdmin($req,$id);
         //Redirect::to('http://127.0.0.1:8000/mesajlarforadmin');
         //redirect()->to('messagesforadmin');
+        //redirect()->to('messagesforadmin');
+        return redirect()->back();
     }
 
     public function getTaleplerim(Request $req){
