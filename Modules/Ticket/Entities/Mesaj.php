@@ -24,6 +24,7 @@ class Mesaj extends Model
 
 
     public static function getAllMesaj(){
+        //DB::select('SELECT * FROM messajlar m JOIN users u ON m.sender_id=u.id WHERE m.receiver_id=?',)
         return $mesajlar=DB::select('SELECT * FROM messajlar WHERE (receiver_id=?) ORDER BY created_at',['2']);
         
     }

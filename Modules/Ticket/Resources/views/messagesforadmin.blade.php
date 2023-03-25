@@ -12,7 +12,7 @@
 		content="sales dashboard, admin dashboard, bootstrap 5 admin template, html admin template, admin panel design, admin panel design, bootstrap 5 dashboard, admin panel template, html dashboard template, bootstrap admin panel, sales dashboard design, best sales dashboards, sales performance dashboard, html5 template, dashboard template">
 
 		<!-- Favicon -->
-		<link src="{{url('assets/img/brand/favicon.ico')}}">
+		<link src="/assets/img/brand/favicon.ico">
 		
 
 		<!-- Title -->
@@ -20,23 +20,23 @@
 		<title>Dashlead - Admin Panel HTML Dashboard Template</title>
 
 		<!---bootstrap css-->
-		<link src="{{url('assets/plugins/bootstrap/css/bootstrap.min.css')}}"rel="stylesheet">
+		<link src="/assets/plugins/bootstrap/css/bootstrap.min.css"rel="stylesheet">
 
 		<!--- FONT-ICONS CSS -->
-		<link src="{{url('assets/css/icons.css')}}"rel="stylesheet">
+		<link src="/assets/css/icons.css"rel="stylesheet">
 		
 
 		<!---Style css-->
-		<link src="{{url('assets/css/style.css')}}"rel="stylesheet">
+		<link src="/assets/css/style.css"rel="stylesheet">
 		
 
 		<!---Plugins css-->
-		<link src="{{url('assets/css/plugins.css')}}"rel="stylesheet">
+		<link src="/assets/css/plugins.css"rel="stylesheet">
 		
 
 		<!-- Switcher css -->
-		<link src="{{url('assets/switcher/css/switcher.css')}}"rel="stylesheet">
-		<link src="{{url('assets/switcher/demo.css')}}"rel="stylesheet">
+		<link src="/assets/switcher/css/switcher.css"rel="stylesheet">
+		<link src="/assets/switcher/demo.css"rel="stylesheet">
 		
 
 	</head>
@@ -88,13 +88,14 @@
 											@foreach($mesajlar as $mesaj)
 											<div class="media">
 												<div class="main-img-user">
-													<img alt="avatar" src="{{url('assets/img/users/3.png')}}">
+													<img alt="avatar" src="/assets/img/users/user.png">
 												</div>
+												
 												<div class="media-body">
 													<div class="media-contact-name">
-														<span></span> <span>{{$mesaj->created_at}}</span>
+														<span></span> <span>{{$mesaj->text}}</span>
 													</div>
-													<p>{{$mesaj->text}}</p>
+													<p>{{$mesaj->created_at}}</p>
 												</div>
 											</div>
 											<a href="http://127.0.0.1:8000/ticket/admin/mesajlarforadmin/{{ $mesaj->id }}/{{ $mesaj->sender_id }}">Cevap Yaz</a>
@@ -117,10 +118,11 @@
 								<div class="main-content-app pt-0">
 									<div class="main-content-body main-content-body-chat">
 										<div class="main-chat-header pt-3">
-											<div class="main-img-user online"><img alt="avatar" src="{{url('assets/img/users/1.jpg')}}"></div>
 											<div class="main-chat-msg-name">
-												<h6>Sonia Taylor</h6>
-												<span class="dot-label bg-success"></span><small class="me-3">online</small>
+												
+												<!--<h6>Sonia Taylor</h6>
+												<span class="dot-label bg-success"></span><small class="me-3">online</small>-->
+
 											</div>
 											<nav class="nav">
 											 
@@ -134,7 +136,7 @@
 												
 												@foreach($mesajlar as $mesaj)
 												<div class="media">
-													<div class="main-img-user online"><img alt="avatar" src="{{url('assets/img/users/1.jpg')}}"></div>
+													<div class="main-img-user online"><img alt="avatar" src="/assets/img/users/user.png"></div>
 													<div class="media-body">
 														<div class="main-msg-wrapper">
 															{{$mesaj->text}}
@@ -179,40 +181,45 @@
 			<a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
 
 			<!-- Jquery js-->
-			<script src="{{url('assets/plugins/jquery/jquery.min.js')}}"></script>
+			<script src="/assets/plugins/jquery/jquery.min.js"></script>
 
 			<!-- Bootstrap js-->
-			<script src="{{url('assets/plugins/bootstrap/popper.min.js')}}"></script>
-			<script src="{{url('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+			<script src="/assets/plugins/bootstrap/popper.min.js"></script>
+			<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 
 			<!-- Perfect-scrollbar js-->
-			<script src="{{url('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-			<script src="{{url('assets/plugins/perfect-scrollbar/p-scroll-1.js')}}"></script>
+			<script src="/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+			<script src="/assets/plugins/perfect-scrollbar/p-scroll-1.js"></script>
 
 
 			<!-- Sidemenu js-->
-			<script src="{{url('assets/plugins/sidemenu/sidemenu.js')}}"></script>
+			<script src="/assets/plugins/sidemenu/sidemenu.js)"></script>
 			
 
 			<!-- Sidebar js-->
-			<script src="{{url('assets/plugins/sidebar/sidebar.js')}}"></script>
+			<script src="/assets/plugins/sidebar/sidebar.js"></script>
 			
 
 			<!-- Sticky js-->
-			<script src="{{url('assets/js/sticky.js')}}"></script>
+			<script src="/assets/js/sticky.js"></script>
 			
 
 			<!-- Custom-Switcher js -->
-			<script src="{{url('assets/js/custom-switcher.js')}}"></script>
+			<script src="/assets/js/custom-switcher.js"></script>
 			
 
 			<!-- Custom js-->
-			<script src="{{url('assets/js/custom.js')}}"></script>
+			<script src="/assets/js/custom.js"></script>
 			
 
 			<!-- Switcher js -->
-			<script src="{{url('assets/switcher/js/switcher.js')}}"></script>
+			<script src="/assets/switcher/js/switcher.js"></script>
+
+			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 			
 
 	</body>
