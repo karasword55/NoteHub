@@ -147,25 +147,22 @@
 											<div class="content-inner">
 												
 												
-												@foreach($mesajlar as $mesaj)
+												
 												<div class="media">
 													<div class="main-img-user online"><img alt="avatar" src="/assets/img/users/user.png"></div>
 													<div class="media-body">
 														<div class="main-msg-wrapper ornek">
-															{{$mesaj->text}}
-
-															<?php $mesajId = $mesaj->id; ?>
-															<?php $senderId = $mesaj->sender_id; ?>
-
 															
+
+																
 														</div>
 														<div>
-															<span>{{$mesaj->created_at}}</span> 
+															<span></span> 
 															<a href="javascript:void(0);"><i class="icon ion-android-more-horizontal"></i></a>
 														</div>
 													</div>
 												</div>
-												@endforeach
+												
 												
 												
 												
@@ -251,13 +248,19 @@
 							data: { 
 								_token: '{{ csrf_token() }}',
 								mesajId: $(this).data('mesajid'),
-								senderId: '{{$senderId}}'
+								senderId: $(this).data('senderId'),
 							},
 							success: function(data) {
 								// do something with the data
 								console.log('success');
 								console.log(data);
-								$('.ornek').html('success');
+								$('.ornek').html(data);
+
+								var html='';
+								for(var i=0;i<data.length;i++){
+									html+= '<p>' + data[i].text + '</p>';
+								}
+								$('.ornek').html(html);
 							}
 						});
 					});
