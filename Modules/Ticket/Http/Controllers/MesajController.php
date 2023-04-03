@@ -5,6 +5,10 @@ namespace Modules\Ticket\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Response;
+use Illuminate\Support\Facades\Session;
+
 use Modules\Ticket\Repository\IMesajRepository;
 
 class MesajController extends Controller
@@ -137,6 +141,32 @@ class MesajController extends Controller
     public function getTaleplerim(Request $req){
         $mesajlar= $this->mesaj->getTaleplerim($req);
         return view('ticket::taleplerim')->with('mesajlar',$mesajlar);
+    }
+
+    public function getAjax(Request $request)
+    {
+        /*$new_id= $mesajId;
+        error_log($new_id);
+        $admin_id=2;
+        $receiver_id=$sender_id;
+        Session::put('id', $new_id);*/
+
+        $new_id= $request->mesajId;
+        error_log($new_id);
+        $receiver_id= $request->senderId;
+        Session::put('id', $new_id);
+        error_log($new_id);
+        /*$new_id= $request->id;
+        error_log($new_id);
+        print_r($request);
+        $admin_id=2;
+        //$receiver_id=$senderId;
+        Session::put('id', $new_id);*/
+        
+        /*return DB::select('SELECT * FROM messajlar WHERE id= ? OR 
+        ((sender_id=? and receiver_id=?)or (sender_id=? and receiver_id=?))',[$new_id,$senderId,2,2,$senderId]);*/
+        $mesajlar= DB::select('SELECT * FROM messajlar WHERE id=? OR cevapfor=?',[$new_id,Session::get('id')]);
+        return Response::json($mesajlar);
     }
 
 

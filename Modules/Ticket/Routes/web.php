@@ -41,6 +41,7 @@ Route::prefix('ticket/admin')->middleware(['auth','isAdmin'])->group(function() 
     Route::get('/mesajlarforadmin','MesajController@getAllMesaj');
     Route::get('/mesajlarforadmin/{messageId}/{senderId}','MesajController@getMesajBySenderId');
     Route::post('/sendMessageFromAdmin/{id}',[MesajController::class, 'sendMessageFromAdmin']);
+    Route::get('/ajax',[MesajController::class, 'getAjax']);
 
     
 });

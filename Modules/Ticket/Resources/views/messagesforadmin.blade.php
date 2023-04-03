@@ -2,6 +2,8 @@
 <html lang="en">
 
 	<head>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 		<meta charset="utf-8">
@@ -10,6 +12,12 @@
 		<meta name="author" content="Spruko Technologies Private Limited">
 		<meta name="keywords"
 		content="sales dashboard, admin dashboard, bootstrap 5 admin template, html admin template, admin panel design, admin panel design, bootstrap 5 dashboard, admin panel template, html dashboard template, bootstrap admin panel, sales dashboard design, best sales dashboards, sales performance dashboard, html5 template, dashboard template">
+
+
+		
+		
+
+		
 
 		<!-- Favicon -->
 		<link src="/assets/img/brand/favicon.ico">
@@ -42,6 +50,8 @@
 	</head>
 
 	<body class="app sidebar-mini">
+
+		
 
 		
 
@@ -86,6 +96,9 @@
 										</nav>
 										<div class="main-chat-list ps ps--active-y" id="ChatList">
 											@foreach($mesajlar as $mesaj)
+											
+											
+													<?php $senderId = $mesaj->sender_id; ?>
 											<div class="media">
 												<div class="main-img-user">
 													<img alt="avatar" src="/assets/img/users/user.png">
@@ -98,7 +111,7 @@
 													<p>{{$mesaj->created_at}}</p>
 												</div>
 											</div>
-											<a href="http://127.0.0.1:8000/ticket/admin/mesajlarforadmin/{{ $mesaj->id }}/{{ $mesaj->sender_id }}">Cevap Yaz</a>
+											<button class="getData" data-mesajid="<?php echo $mesaj->id; ?>">Cevap Yaz</button>
 											@endforeach
 										<div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 591px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 409px;"></div></div></div><!-- main-chat-list -->
 									</div>
@@ -138,11 +151,17 @@
 												<div class="media">
 													<div class="main-img-user online"><img alt="avatar" src="/assets/img/users/user.png"></div>
 													<div class="media-body">
-														<div class="main-msg-wrapper">
+														<div class="main-msg-wrapper ornek">
 															{{$mesaj->text}}
+
+															<?php $mesajId = $mesaj->id; ?>
+															<?php $senderId = $mesaj->sender_id; ?>
+
+															
 														</div>
 														<div>
-															<span>{{$mesaj->created_at}}</span> <a href="javascript:void(0);"><i class="icon ion-android-more-horizontal"></i></a>
+															<span>{{$mesaj->created_at}}</span> 
+															<a href="javascript:void(0);"><i class="icon ion-android-more-horizontal"></i></a>
 														</div>
 													</div>
 												</div>
@@ -216,13 +235,37 @@
 			<!-- Switcher js -->
 			<script src="/assets/switcher/js/switcher.js"></script>
 
-			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+			<script>
+				$(document).ready(function() {
+					$('.getData').click(function() {
+						
+						console.log($(this).data('mesajid'));
+						$.ajax({
+							url: '{{ url("http://127.0.0.1:8000/ticket/admin/ajax") }}',
+							type: 'GET',
+							dataType: 'json',
+							data: { 
+								_token: '{{ csrf_token() }}',
+								mesajId: $(this).data('mesajid'),
+								senderId: '{{$senderId}}'
+							},
+							success: function(data) {
+								// do something with the data
+								console.log('success');
+								console.log(data);
+								$('.ornek').html('success');
+							}
+						});
+					});
+				});
+			</script>
 
 			
 
 	</body>
 
 </html>
-
