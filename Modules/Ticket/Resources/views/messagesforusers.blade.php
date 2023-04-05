@@ -11,26 +11,26 @@
 		content="sales dashboard, admin dashboard, bootstrap 5 admin template, html admin template, admin panel design, admin panel design, bootstrap 5 dashboard, admin panel template, html dashboard template, bootstrap admin panel, sales dashboard design, best sales dashboards, sales performance dashboard, html5 template, dashboard template">
 
 		<!-- Favicon -->
-		<link rel="icon" href="../assets/img/brand/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/assets/img/brand/favicon.ico" type="image/x-icon">
 
 		<!-- Title -->
 		<title>Dashlead - Admin Panel HTML Dashboard Template</title>
 
 		<!---bootstrap css-->
-		<link id="style" href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link id="style" href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 		<!--- FONT-ICONS CSS -->
-		<link href="../assets/css/icons.css" rel="stylesheet">
+		<link href="/assets/css/icons.css" rel="stylesheet">
 
 		<!---Style css-->
-		<link href="../assets/css/style.css" rel="stylesheet">
+		<link href="/assets/css/style.css" rel="stylesheet">
 
 		<!---Plugins css-->
-		<link href="../assets/css/plugins.css" rel="stylesheet">
+		<link href="/assets/css/plugins.css" rel="stylesheet">
 
 		<!-- Switcher css -->
-		<link href="../assets/switcher/css/switcher.css" rel="stylesheet">
-		<link href="../assets/switcher/demo.css" rel="stylesheet">
+		<link href="/assets/switcher/css/switcher.css" rel="stylesheet">
+		<link href="/assets/switcher/demo.css" rel="stylesheet">
 
 	</head>
 
@@ -38,7 +38,7 @@
 
 		<!-- Loader -->
 		<div id="global-loader">
-			<img src="../assets/img/loader.svg" class="loader-img" alt="Loader">
+			<img src="/assets/img/loader.svg" class="loader-img" alt="Loader">
 		</div>
 		<!-- End Loader -->
 
@@ -73,17 +73,17 @@
 						
 						
 						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-6  col-xxl-6">
-							<div class="card custom-card">
+							<div class="card custom-card notification-list cart-list">
 								<div class="main-content-app pt-0">
 									<div class="main-content-body main-content-body-chat">
 										<!-- main-chat-header -->
 										<div class="main-chat-body ps ps--active-y" id="ChatBody">
-											<div class="content-inner">
+											<div class="content-inner" style="height:600px;white-space: nowrap;overflow-y:scroll" >
 												
 												
 												@foreach($mesajlar as $mesajlar)
 												<div class="media">
-													<div class="main-img-user online"><img alt="avatar" src="../assets/img/users/1.jpg"></div>
+													<div class="main-img-user online"><img alt="avatar" src="/assets/img/users/1.jpg"></div>
 													<div class="media-body">
 														<div class="main-msg-wrapper">
 															{{$mesajlar->text}}
@@ -126,33 +126,60 @@
 			<a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
 
 			<!-- Jquery js-->
-			<script src="../assets/plugins/jquery/jquery.min.js"></script>
+			<script src="/assets/plugins/jquery/jquery.min.js"></script>
 
 			<!-- Bootstrap js-->
-			<script src="../assets/plugins/bootstrap/popper.min.js"></script>
-			<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+			<script src="/assets/plugins/bootstrap/popper.min.js"></script>
+			<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 			<!-- Perfect-scrollbar js-->
-			<script src="../assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-			<script src="../assets/plugins/perfect-scrollbar/p-scroll-1.js"></script>
+			<script src="/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+			<script src="/assets/plugins/perfect-scrollbar/p-scroll-1.js"></script>
 
 			<!-- Sidemenu js-->
-			<script src="../assets/plugins/sidemenu/sidemenu.js"></script>
+			<script src="/assets/plugins/sidemenu/sidemenu.js"></script>
 
 			<!-- Sidebar js-->
-			<script src="../assets/plugins/sidebar/sidebar.js"></script>
+			<script src="/assets/plugins/sidebar/sidebar.js"></script>
 
 			<!-- Sticky js-->
-			<script src="../assets/js/sticky.js"></script>
+			<script src="/assets/js/sticky.js"></script>
 
 			<!-- Custom-Switcher js -->
-			<script src="../assets/js/custom-switcher.js"></script>
+			<script src="/assets/js/custom-switcher.js"></script>
 
 			<!-- Custom js-->
-			<script src="../assets/js/custom.js"></script>
+			<script src="/assets/js/custom.js"></script>
 
 			<!-- Switcher js -->
-			<script src="../assets/switcher/js/switcher.js"></script>
+			<script src="/assets/switcher/js/switcher.js"></script>
+
+			<script>
+    			(function ($) {
+				"use strict";
+
+				//P-scrolling
+				const ps5 = new PerfectScrollbar('.notification-list', {
+					useBothWheelAxes: true,
+					suppressScrollX: true,
+				});
+
+				//P-scrolling
+				const ps6 = new PerfectScrollbar('.cart-list', {
+					useBothWheelAxes: true,
+					suppressScrollX: true,
+				});
+
+				//P-scrolling
+				// const ps16 = new PerfectScrollbar('.slide-menu', {
+				// 	useBothWheelAxes: true,
+				// 	suppressScrollX: true,
+				// });
+	
+				$('.tabs-menu-body').each(function () { const ps = new PerfectScrollbar($(this)[0]); });
+
+				})(jQuery);
+			</script>
 
 	</body>
 

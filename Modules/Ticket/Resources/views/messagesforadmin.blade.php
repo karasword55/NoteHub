@@ -98,8 +98,9 @@
 											@foreach($mesajlar as $mesaj)
 											
 											
-													<?php $senderId = $mesaj->sender_id; ?>
+													
 											<div class="media">
+												
 												<div class="main-img-user">
 													<img alt="avatar" src="/assets/img/users/user.png">
 												</div>
@@ -108,10 +109,10 @@
 													<div class="media-contact-name">
 														<span></span> <span>{{$mesaj->text}}</span>
 													</div>
-													<p>{{$mesaj->created_at}}</p>
+													<p>{{$mesaj->cr_at}}</p>
 												</div>
 											</div>
-											<button class="getData" data-mesajid="<?php echo $mesaj->id; ?>">Cevap Yaz</button>
+											<button class="getData" data-mesajid="<?php echo $mesaj->id; ?>" data-senderid="<?php echo $mesaj->sender_id;  ?>">Cevap Yaz</button>
 											@endforeach
 										<div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 591px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 409px;"></div></div></div><!-- main-chat-list -->
 									</div>
@@ -241,6 +242,7 @@
 					$('.getData').click(function() {
 						
 						console.log($(this).data('mesajid'));
+						//console.log($(this).data('senderId'));
 						$.ajax({
 							url: '{{ url("http://127.0.0.1:8000/ticket/admin/ajax") }}',
 							type: 'GET',
@@ -248,24 +250,30 @@
 							data: { 
 								_token: '{{ csrf_token() }}',
 								mesajId: $(this).data('mesajid'),
-								senderId: $(this).data('senderId'),
+								senderId: $(this).data('senderid'),
 							},
 							success: function(data) {
 								// do something with the data
 								console.log('success');
 								console.log(data);
+								
 								$('.ornek').html(data);
 
 								var html='';
 								for(var i=0;i<data.length;i++){
 									html+= '<p>' + data[i].text + '</p>';
 								}
+								
 								$('.ornek').html(html);
+								//location.reload(1500);
+								
 							}
 						});
 					});
 				});
 			</script>
+
+			
 
 			
 

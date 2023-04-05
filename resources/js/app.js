@@ -1,6 +1,8 @@
 import './bootstrap';
 
 import $ from "jquery";
+import PerfectScrollbar from 'perfect-scrollbar';
+
 
 $(function() {
     url: '/ajax',

@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "jquery": "^3.6.4",
+        "perfect-scrollbar": "^1.5.5",
         "query": "^0.2.0"
     }
 }

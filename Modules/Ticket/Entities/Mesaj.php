@@ -24,9 +24,16 @@ class Mesaj extends Model
 
 
     public static function getAllMesaj(){
+        //$adminId =DB::select('SELECT id FROM users WHERE role=?',[1]);
         //DB::select('SELECT * FROM messajlar m JOIN users u ON m.sender_id=u.id WHERE m.receiver_id=?',)
-        return $mesajlar=DB::select('SELECT * FROM messajlar WHERE (receiver_id=?) ORDER BY created_at',['2']);
-        
+        //$adminId= implode("|",$adminId);
+        //return $mesajlar=DB::select('SELECT * FROM messajlar WHERE (receiver_id=?) ORDER BY created_at',[2]);
+        //return $mesajlar= DB::select('SELECT MAX(id) AS id, cevapfor, MAX(receiver_id) AS receiver_id, MAX(sender_id) AS sender_id,  MAX(text) AS text, MAX(created_at) AS created_at FROM messajlar GROUP BY cevapfor') ;
+        //select MAX(id) as id, cevapfor,MAX(text) as text, MAX(created_at) as cr_at, MAX(receiver_id)as receiver_id, MAX(sender_id)as sender_id from messajlar group by cevapfor 
+        return $mesajlar= DB::select('SELECT MAX(id) AS id, sender_id,MAX(text) AS text, 
+        MAX(created_at) AS cr_at, MAX(receiver_id)AS receiver_id, 
+        MAX(cevapfor)AS cevapfor 
+        FROM messajlar GROUP BY sender_id HAVING sender_id>2 ORDER BY cr_at ASC');
     }
 
     public static function getAllMesajForUser(Request $req){
@@ -59,7 +66,8 @@ class Mesaj extends Model
         $sender_id= $req->user()->id;
         $text=$req->input('text');
         $time=now();
-
+        //$adminId =DB::select('SELECT id FROM users WHERE role=?',[1]);
+        //$adminId= implode("|",$adminId);
         DB::select('insert into messajlar (sender_id,text,created_at,receiver_id) values(?,?,?,?)',[$sender_id,$text,$time,2]);
     }
 
@@ -95,6 +103,8 @@ class Mesaj extends Model
 
     public static function getTaleplerim(Request $req){
         $id= $req->user()->id;
+        //$adminId =DB::select('SELECT id FROM users WHERE role=?',[1]);
+        //$adminId= implode("|",$adminId);
         return DB::select('SELECT * FROM messajlar WHERE (sender_id=? AND receiver_id=?) OR (sender_id=? AND receiver_id=?)',[$id,2,2,$id]);
     }
 

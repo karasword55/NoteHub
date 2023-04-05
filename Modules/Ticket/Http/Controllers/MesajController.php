@@ -96,10 +96,10 @@ class MesajController extends Controller
 
     public function getAllMesaj(){
         $mesajlar= $this->mesaj->getAllMesaj();
-        foreach($mesajlar as $value){
+        /*foreach($mesajlar as $value){
             error_log($value->text);
             
-        }
+        }*/
         return view('ticket::messagesforadmin')->with('mesajlar',$mesajlar);
     }
 
@@ -152,10 +152,11 @@ class MesajController extends Controller
         Session::put('id', $new_id);*/
 
         $new_id= $request->mesajId;
-        error_log($new_id);
-        $receiver_id= $request->senderId;
+        //error_log($new_id);
+        $senderid= $request->senderId;
         Session::put('id', $new_id);
         error_log($new_id);
+        //error_log("senderId=>"+ $senderid);
         /*$new_id= $request->id;
         error_log($new_id);
         print_r($request);
@@ -165,8 +166,10 @@ class MesajController extends Controller
         
         /*return DB::select('SELECT * FROM messajlar WHERE id= ? OR 
         ((sender_id=? and receiver_id=?)or (sender_id=? and receiver_id=?))',[$new_id,$senderId,2,2,$senderId]);*/
-        $mesajlar= DB::select('SELECT * FROM messajlar WHERE id=? OR cevapfor=?',[$new_id,Session::get('id')]);
-        return Response::json($mesajlar);
+        $mesajlar= DB::select('SELECT * FROM messajlar 
+        WHERE id=? OR cevapfor=? OR sender_id=? 
+        OR (sender_id=? AND receiver_id=?)',[$new_id,Session::get('id'),$senderid,$request->user()->id,$senderid]);
+        return Response::json($mesajlar); 
     }
 
 
