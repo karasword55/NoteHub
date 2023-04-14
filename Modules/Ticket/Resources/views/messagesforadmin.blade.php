@@ -238,22 +238,28 @@
 
 
 			<script>
-				$(document).ready(function() {
+
+				$(document).ready(function request() {
+					
 					$('.getData').click(function() {
-						
+						var thisfarlateruse=$(this);
 						console.log($(this).data('mesajid'));
 						//console.log($(this).data('senderId'));
-						$.ajax({
+						setInterval(function(){
+							console.log('setinterval girdi');
+							$.ajax({
+							
 							url: '{{ url("http://127.0.0.1:8000/ticket/admin/ajax") }}',
 							type: 'GET',
 							dataType: 'json',
 							data: { 
 								_token: '{{ csrf_token() }}',
-								mesajId: $(this).data('mesajid'),
-								senderId: $(this).data('senderid'),
+								mesajId: $(thisfarlateruse).data('mesajid'),
+								senderId: $(thisfarlateruse).data('senderid'),
 							},
 							success: function(data) {
 								// do something with the data
+								
 								console.log('success');
 								console.log(data);
 								
@@ -265,13 +271,26 @@
 								}
 								
 								$('.ornek').html(html);
-								//location.reload(1500);
+								//location.reload(500);
 								
+							},
+							error: function (xhr, status, error) {
+								console.log('Error fetching new responses:', error);
 							}
 						});
+						},4000);
+						
 					});
+					//setInterval(request,3000);
 				});
+				
+				
+				//setInterval(auto,3000);
 			</script>
+
+
+
+			
 
 			
 
