@@ -278,7 +278,7 @@
 								console.log('Error fetching new responses:', error);
 							}
 						});
-						},4000);
+						},2000);
 						
 					});
 					//setInterval(request,3000);

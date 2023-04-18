@@ -112,6 +112,16 @@ class MesajController extends Controller
         return view('ticket::messagesforusers')->with('mesajlar',$mesajlar);
     }
 
+    public function getAllMesajForUserAjax(Request $req){
+        $mesajlar=DB::select('SELECT * FROM messajlar WHERE (sender_id=?) OR (receiver_id=?) ORDER BY created_at',[$req->user()->id,$req->user()->id]);
+        if($req->ajax()){
+            return Response::json($mesajlar);
+        }
+        return view('ticket::messagesforusers', [
+            'mesajlar' => $mesajlar
+         ]);
+    }
+
     public function getMesajBySenderId(Request $req,$id,$senderId){
         $mesajlar= $this->mesaj->getMesajBySenderId($req,$id,$senderId);
         //$textler= $mesajlar['text']->list('text');

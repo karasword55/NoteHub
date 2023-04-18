@@ -72,7 +72,7 @@
 						
 						
 						
-						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-6  col-xxl-6">
+						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-6  col-xxl-6 ">
 							<div class="card custom-card notification-list cart-list">
 								<div class="main-content-app pt-0">
 									<div class="main-content-body main-content-body-chat">
@@ -81,21 +81,20 @@
 											<div class="content-inner" style="height:600px;white-space: nowrap;overflow-y:scroll" >
 												
 												
-												@foreach($mesajlar as $mesajlar)
+												
 												<div class="media">
 													<div class="main-img-user online"><img alt="avatar" src="/assets/img/users/1.jpg"></div>
 													<div class="media-body">
-														<div class="main-msg-wrapper">
-															{{$mesajlar->text}}
+														<div class="main-msg-wrapper ornek">
+															
 														</div>
 														<div>
-															<span>{{$mesajlar->created_at}}</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+															<span></span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
 														</div>
 													</div>
 												</div>
-												@endforeach
 												
-												
+	
 											</div>
 										<div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 608px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 351px;"></div></div></div>
 										<form action="http://127.0.0.1:8000/ticket/user/message" method="post">
@@ -183,7 +182,51 @@
 
 
 
-			
+			<script>
+
+					$(document).ready(function (){
+						console.log('document girdi');
+					
+						
+						setInterval(function(){
+							console.log('setinterval girdi');
+							$.ajax({
+							
+								url: '{{ url("http://127.0.0.1:8000/ticket/user/mesajlarforuser") }}',
+								type: 'GET',
+								dataType: 'json',
+								data: { 
+									_token: '{{ csrf_token() }}',
+									/*mesajId: $(thisfarlateruse).data('mesajid'),
+									senderId: $(thisfarlateruse).data('senderid'),*/
+								},
+								success: function(data) {
+									// do something with the data
+									
+									console.log('success');
+									console.log(data);
+									
+									$('.ornek').html(data);
+
+									var html='';
+									for(var i=0;i<data.length;i++){
+										html+= '<p>' + data[i].text + '</p>';
+									}
+									
+									$('.ornek').html(html);
+									//location.reload(500);
+									
+								},
+								error: function (xhr, status, error) {
+									console.log('Error fetching new responses:', error);
+								}
+							});
+						},1500);
+						
+					});
+
+
+			</script>
 
 
 			

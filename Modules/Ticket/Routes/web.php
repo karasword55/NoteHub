@@ -26,7 +26,8 @@ Route::prefix('ticket/user')->middleware(['auth','isNotAdmin'])->group(function(
     Route::get('/tickets','TicketController@getTicketsById');
     Route::get('/create_support', 'TicketController@create_support');
     Route::post('/save_support', 'TicketController@save_support');
-    Route::get('/mesajlarforuser','MesajController@getAllMesajForUser');
+    //Route::get('/mesajlarforuser','MesajController@getAllMesajForUser');
+    Route::get('/mesajlarforuser','MesajController@getAllMesajForUserAjax');
     Route::post('/message',[MesajController::class, 'sendMessage']);
     
 });
