@@ -64,14 +64,7 @@
 					</div>
 				</div>
 					
-						
-						
-						
-						
-						
-						
-						
-						
+
 						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-6  col-xxl-6 ">
 							<div class="card custom-card notification-list cart-list">
 								<div class="main-content-app pt-0">
@@ -210,6 +203,7 @@
 
 									var html='';
 									for(var i=0;i<data.length;i++){
+										html+= '<img alt="avatar" src="/assets/img/users/1.jpg">';
 										html+= '<p>' + data[i].text + '</p>';
 									}
 									
